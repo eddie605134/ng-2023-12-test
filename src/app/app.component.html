@@ -1,0 +1,12 @@
+<mat-toolbar color="primary">
+  <span>{{ title }}</span>
+</mat-toolbar>
+<mat-chip-listbox>
+  @for (item of navItems; track item.label) {
+  <mat-chip-option [routerLink]="item.link" color="accent">
+    <a mat-list-item routerLinkActive="active-link" ariaCurrentWhenActive="page">{{item.label}}</a>
+  </mat-chip-option>
+  }
+</mat-chip-listbox>
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>

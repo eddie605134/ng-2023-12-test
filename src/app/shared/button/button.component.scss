@@ -1,0 +1,13 @@
+button {
+  /* 添加一些基本的樣式 */
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* 您可以根據傳入的類名添加更多樣式 */
+.my-custom-class {
+  background-color: rgb(16, 198, 218);
+  color: white;
+}

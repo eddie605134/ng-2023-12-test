@@ -1,0 +1,19 @@
+<form name="user-form" #userForm="ngForm" (submit)="save(userForm)">
+  <mat-form-field appearance="fill">
+    <mat-label>Name</mat-label>
+    <input matInput name="username" #userName="ngModel" [(ngModel)]="user.name" required="" placeholder="請輸入用戶名" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Age</mat-label>
+    <input matInput name="age" type="number" #userAge="ngModel" [(ngModel)]="user.age" max="100" min="1"
+      placeholder="請輸入年齡" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+
+  <div *ngIf="userForm.invalid">
+    <div *ngIf="userName.invalid">用戶名不得為空</div>
+    <div *ngIf="userAge.invalid">年齡必須在1-100之間</div>
+  </div>
+</form>
