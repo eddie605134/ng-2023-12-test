@@ -1,0 +1,25 @@
+<mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
+
+<app-button id="rx-button" (buttonClick)="testRx()">testRx</app-button>
+
+<mat-card *ngIf="error">
+  <mat-card-header>
+    <mat-card-title>錯誤</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    {{ error }}
+  </mat-card-content>
+</mat-card>
+
+<ng-container *ngIf="posts$ | async as posts">
+  <mat-accordion multi="true">
+    <mat-expansion-panel *ngFor="let post of posts">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{ post.title }}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <p>{{ post.body }}</p>
+    </mat-expansion-panel>
+  </mat-accordion>
+</ng-container>

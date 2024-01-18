@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+// import { BrowserModule } from '@angular/platform-browser';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
@@ -17,6 +20,8 @@ interface Button {
   standalone: true,
   imports: [
     CommonModule,
+    // BrowserModule,
+    // BrowserAnimationsModule, // Angular Material 需要動畫模組
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
@@ -36,6 +41,7 @@ export class AppComponent {
     { link: '/second-component', label: 'Second Component' },
     { link: '/event-bilding', label: 'Event-Bilding' },
     { link: '/http-test', label: 'HTTP Test' },
-    { link: '/forms', label: 'Forms' }
+    { link: '/forms', label: 'Forms' },
+    { link: '/rxjs-and-signals', label: 'rxjs and signals' }
   ];
 }
