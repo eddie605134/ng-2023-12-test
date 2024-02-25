@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, effect, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EMPTY, Observable, Subscription, of, from, fromEvent, interval, timer } from 'rxjs';
 import { map, filter, tap, catchError, take } from 'rxjs/operators';
@@ -10,6 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { ButtonComponent } from '../shared/button/button.component';
+import { MatInputModule } from '@angular/material/input';
 
 @Component({
   selector: 'app-rxjs-and-signals',
@@ -20,6 +21,7 @@ import { ButtonComponent } from '../shared/button/button.component';
     MatCardModule,
     MatExpansionModule,
     ButtonComponent,
+    MatInputModule,
   ],
   templateUrl: './rxjs-and-signals.component.html',
   styleUrl: './rxjs-and-signals.component.scss'
@@ -34,7 +36,13 @@ export class RxjsAndSignalsComponent implements OnInit, OnDestroy {
   sources$!: Observable<any>;
   buttonClicks$!: Observable<any>;
 
-  constructor(private postService: PostService) { }
+  count = signal(0);
+
+  constructor(private postService: PostService) {
+    effect(() => {
+      console.log('Count:', this.count());
+    });
+  }
 
   ngOnInit(): void {
     this.loading = true;
@@ -71,7 +79,7 @@ export class RxjsAndSignalsComponent implements OnInit, OnDestroy {
 
     // 訂閱這個 Observable 來處理點擊事件
     this.buttonClicks$.subscribe(() => {
-      this.testRx()
+      // this.testRx()
     });
   }
 
@@ -80,6 +88,18 @@ export class RxjsAndSignalsComponent implements OnInit, OnDestroy {
   }
 
   testRx() {
-    console.log('Material 按鈕被點擊了！')
+    // console.log('Material 按鈕被點擊了！')
+    this.increase()
+  }
+  reset() {
+    this.count.set(0);
+  }
+
+  increase() {
+    this.count.update((c) => ++c);
+  }
+
+  typing(event: any) {
+    this.count.set(event.target.value);
   }
 }
